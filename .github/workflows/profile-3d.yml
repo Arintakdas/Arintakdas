@@ -21,4 +21,5 @@ jobs:
           git config user.email github-actions@github.com
           git add -A .
           git commit -m "Generated 3D Graph"
+          git pull --rebase
           git push
