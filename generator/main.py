@@ -68,10 +68,16 @@ def generate(args) -> None:
         datefmt="%Y-%m-%d %H:%M:%S",
     )
     demo = getattr(args, "demo", False)
-    config_path = ROOT / ("config.example.yml" if demo else "config.yml")
+    if demo:
+        config_path = ROOT / "config.example.yml"
+        if not config_path.exists():
+            config_path = ROOT / "config.yml"
+    else:
+        config_path = ROOT / "config.yml"
+
     if not config_path.exists():
         if demo:
-            logger.error("config.example.yml not found.")
+            logger.error("Neither config.example.yml nor config.yml found.")
         else:
             logger.error("config.yml not found. Copy config.example.yml to config.yml and edit it.")
         sys.exit(1)

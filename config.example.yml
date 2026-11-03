@@ -1,0 +1,73 @@
+username: galaxy-dev
+
+profile:
+  name: "Galaxy Developer"
+  tagline: "Systems & ML Engineer"
+  company: "Open Source"
+  location: "Earth"
+  bio: |
+    Architecting distributed systems and building intelligent models.
+  philosophy: 'Building tools that make a difference.'
+
+social:
+  email: "developer@example.com"
+  linkedin: "developer"
+  website: "https://github.com/galaxy-dev"
+
+galaxy_arms:
+  - name: "Core & Systems"
+    color: "dendrite_violet"
+    items:
+      - "Rust"
+      - "Go"
+      - "C++"
+  - name: "AI & ML"
+    color: "synapse_cyan"
+    items:
+      - "Python"
+      - "PyTorch"
+      - "TensorFlow"
+  - name: "Web & Cloud"
+    color: "axon_amber"
+    items:
+      - "TypeScript"
+      - "Docker"
+      - "Kubernetes"
+
+projects:
+  - repo: "galaxy-dev/nebula-ui"
+    arm: 0
+    description: "Modern UI library for terminal and web interfaces."
+  - repo: "galaxy-dev/stargate-api"
+    arm: 1
+    description: "High performance API gateway for ML inference."
+  - repo: "galaxy-dev/orbit-cli"
+    arm: 2
+    description: "Developer CLI tools for cloud workflows."
+
+theme:
+  void: "#080c14"
+  nebula: "#0f1623"
+  star_dust: "#1a2332"
+  synapse_cyan: "#00d4ff"
+  dendrite_violet: "#a78bfa"
+  axon_amber: "#ffb020"
+  text_bright: "#f1f5f9"
+  text_dim: "#94a3b8"
+  text_faint: "#64748b"
+
+stats:
+  metrics:
+    - "commits"
+    - "stars"
+    - "prs"
+    - "issues"
+    - "repos"
+
+languages:
+  exclude:
+    - "HTML"
+    - "CSS"
+    - "Shell"
+    - "Makefile"
+  max_display: 8
