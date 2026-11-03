@@ -1,93 +1,86 @@
-name: Generate Custom Galaxy Profile
+# Galaxy Profile README Configuration
+# Customized for Arintak Das (Vedic Coder)
 
-on:
-  schedule:
-    - cron: "0 0 * * *"
-  workflow_dispatch:
+username: Arintakdas
 
-permissions:
-  contents: write
+profile:
+  name: "Arintak Das"
+  tagline: "Vedic Coder | Systems & ML Engineer"
+  company: "GCETTS"
+  location: "Howrah, India"
+  bio: |
+    Architecting low-level systems, optimizing hardware-aware algorithms, and training on-device deep learning models.
+  philosophy: 'Mastering the machine at the lowest level, from raw-sector forensics to real-time AI.'
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
+social:
+  email: "arintakdas@gcetts.ac.in"
+  linkedin: ""
+  website: "https://github.com/Arintakdas"
 
-      - name: Setup Node.js Environment
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
+# Galaxy arms represent your core focus areas
+# Each arm spirals out from the center with its own color and tech items
+galaxy_arms:
+  - name: "Systems & Core"
+    color: "dendrite_violet"
+    items:
+      - "C"
+      - "C++"
+      - "Java"
+      - "Linux"
+  - name: "AI & Vision"
+    color: "synapse_cyan"
+    items:
+      - "Python"
+      - "TensorFlow Lite"
+      - "OpenCV"
+  - name: "Web & Apps"
+    color: "axon_amber"
+    items:
+      - "Node.js"
+      - "Three.js"
+      - "Kotlin"
 
-      - name: Build and Run Galaxy Generator
-        run: |
-          cat << 'EOF' > generate.js
-          const fs = require('fs');
-          const https = require('https');
+# Featured projects shown as constellation stars
+projects:
+  - repo: "Arintakdas/BitScan"
+    arm: 0
+    description: "Integrated hardware-aware drive sanitization and forensic raw-sector carving tool."
+  - repo: "Arintakdas/Ladybird-Classifier"
+    arm: 1
+    description: "Native Kotlin mobile app running optimized on-device TensorFlow Lite models."
+  - repo: "Arintakdas/3D-Chess-Engine"
+    arm: 2
+    description: "FIDE-compliant chess engine featuring an Alpha-Beta pruning AI via Three.js."
+  - repo: "Arintakdas/Weather-Analytics"
+    arm: 0
+    description: "C backend utilizing custom sorting and graph adjacency matrix storm tracking."
 
-          const options = {
-            hostname: 'api.github.com',
-            path: '/users/Arintakdas',
-            headers: { 'User-Agent': 'Node.js-Galaxy-Generator' }
-          };
+# Theme color overrides (optional — defaults to deep space palette)
+theme:
+  void: "#080c14"
+  nebula: "#0f1623"
+  star_dust: "#1a2332"
+  synapse_cyan: "#00ffcc" # Tweaked to match your preferred neon cyan
+  dendrite_violet: "#a78bfa"
+  axon_amber: "#ffb020"
+  text_bright: "#f1f5f9"
+  text_dim: "#94a3b8"
+  text_faint: "#64748b"
 
-          https.get(options, (res) => {
-            let data = '';
-            res.on('data', chunk => data += chunk);
-            res.on('end', () => {
-              const user = JSON.parse(data);
-              const repos = user.public_repos || 16;
-              
-              // ADDED: Formal XML declaration header
-              let svg = `<?xml version="1.0" encoding="UTF-8"?>
-              <svg width="800" height="400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400">
-                <rect width="100%" height="100%" fill="#0D1117"/>
-                
-                <defs>
-                  <radialGradient id="glow" cx="50%" cy="50%" r="50%">
-                    <stop offset="0%" stop-color="#00FFCC" stop-opacity="0.15"/>
-                    <stop offset="100%" stop-color="#0D1117" stop-opacity="0"/>
-                  </radialGradient>
-                </defs>
-                <circle cx="400" cy="200" r="250" fill="url(#glow)"/>
-              `;
-              
-              for(let i=1; i<=4; i++) {
-                svg += `<ellipse cx="400" cy="200" rx="${i*90}" ry="${i*35}" fill="none" stroke="#30363d" stroke-width="1"/>`;
-              }
-              
-              for(let i=0; i<250; i++) {
-                const x = Math.random() * 800;
-                const y = Math.random() * 400;
-                const r = Math.random() * 1.5;
-                const dur = 2 + Math.random() * 4;
-                svg += `
-                <circle cx="${x}" cy="${y}" r="${r}" fill="#FFFFFF" opacity="0.6">
-                  <animate attributeName="opacity" values="0.2;1;0.2" dur="${dur}s" repeatCount="indefinite"/>
-                </circle>`;
-              }
+# Stats configuration
+stats:
+  metrics:
+    - "commits"
+    - "stars"
+    - "prs"
+    - "issues"
+    - "repos"
 
-              svg += `<text x="400" y="195" font-family="'Courier New', monospace" font-size="28" font-weight="bold" fill="#00FFCC" text-anchor="middle" letter-spacing="2">ARINTAK DAS</text>`;
-              
-              // FIXED: Changed raw '&' to XML-compliant '&amp;'
-              svg += `<text x="400" y="225" font-family="'Courier New', monospace" font-size="14" fill="#8B949E" text-anchor="middle">Systems &amp; ML Engineer | ${repos} Repositories</text>`;
-
-              svg += `</svg>`;
-              
-              fs.writeFileSync('galaxy-dark.svg', svg);
-              fs.writeFileSync('galaxy-light.svg', svg);
-              console.log("Galaxy successfully generated!");
-            });
-          }).on('error', (err) => {
-            console.error("Error fetching data: ", err.message);
-          });
-          EOF
-          
-          node generate.js
-
-      - name: Commit and Push Image
-        uses: stefanzweifel/git-auto-commit-action@v5
-        with:
-          commit_message: "Auto-generated cosmic galaxy SVG"
-          skip_fetch: true
+# Language display settings
+languages:
+  exclude:
+    - "HTML"
+    - "CSS"
+    - "Shell"
+    - "Makefile"
+  max_display: 8
