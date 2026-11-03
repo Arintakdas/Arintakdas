@@ -2,9 +2,10 @@ name: Generate Galaxy Profile
 
 on:
   schedule:
-    - cron: "0 0 * * *" # Runs every night at midnight
-  workflow_dispatch: # Allows you to trigger it manually
+    - cron: "0 0 * * *" 
+  workflow_dispatch: 
 
+# 1. Explicitly grant write permissions
 permissions:
   contents: write
 
@@ -16,7 +17,13 @@ jobs:
         uses: actions/checkout@v4
         
       - name: Generate Galaxy SVG
-        # This calls the exact tool vinimlo uses
         uses: vinimlo/galaxy-profile@main
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
+          
+      # 2. Automatically handle the commit, rebase, and push
+      - name: Auto Commit and Push
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Update Galaxy Profile SVG"
+          skip_fetch: true
