@@ -2,31 +2,37 @@ name: GitHub-Profile-3D-Contrib
 
 on:
   schedule:
-    - cron: "5 0 * * *" # Staggered to prevent overlaps
+    - cron: "0 0 * * *"
   workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: profile-3d-contrib-${{ github.ref }}
+  cancel-in-progress: false
 
 jobs:
   build:
     runs-on: ubuntu-latest
     name: generate-github-profile-3d-contrib
-    
-    # 1. THIS IS THE MAGIC BULLET: Forces GitHub to grant write access automatically
-    permissions:
-      contents: write 
-
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v3
 
-      - name: Generate 3D Contribution Graph
-        uses: yoshi389111/github-profile-3d-contrib@0.7.1
+      - uses: yoshi389111/github-profile-3d-contrib@0.7.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           USERNAME: ${{ github.repository_owner }}
 
-      # 2. Replaces manual git config, add, commit, rebase, and push
-      - name: Auto Commit and Push
-        uses: stefanzweifel/git-auto-commit-action@v5
-        with:
-          commit_message: "Automated 3D Graph Generation"
-          skip_fetch: true
+      - name: Commit & Push
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add -A .
+          if ! git diff --cached --quiet; then
+            git commit -m "Generated 3D Graph"
+            git pull --rebase origin "${GITHUB_REF_NAME}"
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+          else
+            echo "No generated changes to commit."
+          fi
