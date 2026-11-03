@@ -1,70 +1,62 @@
-# Galaxy Profile README Configuration
-# Customized for Arintak Das
-
 username: Arintakdas
 
 profile:
   name: "Arintak Das"
-  tagline: "AI & Deep Learning Engineer | Computer Vision"
-  company: "GCETTS"
-  location: "Howrah, West Bengal, India"
+  tagline: "AI-ML Engineer"
+  company: ""
+  location: "Kolkata, WB, India"
   bio: |
-    B.Tech CSE undergraduate specializing in AI, Machine Learning, and Deep Learning. I train intelligent models for computer vision, deploy on-device mobile applications, and architect high-performance algorithms in C/C++.
-  philosophy: 'Bridging the gap between deep learning research and highly optimized, low-level execution.'
+    Data Scientist and MLOps enthusiast with a knack for building intelligent systems.
+  philosophy: 'I love the whole ML lifecycle, from training models to deploying them.'
 
 social:
-  email: "arintakdas@gcetts.ac.in"
-  linkedin: "https://www.linkedin.com/in/arintak-das-gcetts-india"
+  email: "arintakdas@gmail.com"
+  linkedin: "arintak-das-gcetts-india"
   website: "https://github.com/Arintakdas"
 
-# Galaxy arms represent your core focus areas
 galaxy_arms:
-  - name: "AI & Deep Learning"
+  - name: "Web & Cloud"
+    color: "dendrite_violet"
+    items:
+      - "TypeScript"
+      - "React"
+      - "Flask"
+      - "AWS / Oracle"
+  - name: "AI & Data"
     color: "synapse_cyan"
     items:
       - "Python"
-      - "TensorFlow Lite"
-      - "OpenCV"
-      - "Keras"
-  - name: "Systems & Core"
-    color: "dendrite_violet"
-    items:
-      - "C"
-      - "C++"
-      - "Java"
-      - "Linux"
-  - name: "Mobile & Edge ML"
+      - "PyTorch"
+      - "MySQL"
+  - name: "Automation"
     color: "axon_amber"
     items:
-      - "Kotlin"
-      - "Android Studio"
-      - "Jetpack Compose"
+      - "GitHub Actions"
+      - "Linux"
+      - "Docker"
 
-# Featured projects shown as constellation stars
 projects:
   - repo: "Arintakdas/Detection-and-Classification-of-rare-ladybird-species-using-AI-ML-and-Deep-Learning"
     arm: 0
     description: "AI-powered ladybird species identification using TensorFlow Lite."
   - repo: "Arintakdas/Ai-Student-helper"
-    arm: 0
+    arm: 1
     description: "Intelligent student assistance and automation tools."
   - repo: "Arintakdas/BitScan"
-    arm: 1
+    arm: 2
     description: "Hardware-aware drive sanitization and forensic raw-sector carving tool."
 
-# Theme color overrides
 theme:
   void: "#080c14"
   nebula: "#0f1623"
   star_dust: "#1a2332"
-  synapse_cyan: "#00ffcc"
+  synapse_cyan: "#00d4ff"
   dendrite_violet: "#a78bfa"
   axon_amber: "#ffb020"
   text_bright: "#f1f5f9"
   text_dim: "#94a3b8"
   text_faint: "#64748b"
 
-# Stats configuration
 stats:
   metrics:
     - "commits"
@@ -73,12 +65,10 @@ stats:
     - "issues"
     - "repos"
 
-# Language display settings
 languages:
   exclude:
     - "HTML"
     - "CSS"
     - "Shell"
     - "Makefile"
-    - "JavaScript"
   max_display: 8
